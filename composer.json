@@ -6,5 +6,7 @@
             "email": "hristinacikerenda@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "respect/validation": "^2.5"
+    }
 }

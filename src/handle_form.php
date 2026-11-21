@@ -1,13 +1,17 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
+
+use Respect\Validation\Validator as valid;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
     $errors = [];
 
-    if (trim($name) === '') {
+    if (!valid::stringType()->notEmpty()->validate($name)) {
         $errors[] = "Поле 'Ім'я' не може бути порожнім.";
     }
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!valid::email()->validate($email)) {
         $errors[] = "Введіть коректний email.";
     }
 
